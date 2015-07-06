@@ -11,7 +11,9 @@
  * file per style scope.
  *
  *= require_self
- *= require bootstrap
+ *= require bootstrap_wrapper
+ *= require bootstrap-markdown
+ *= require hero
  *= require jobs
  */
 
@@ -24,4 +26,11 @@
 
 .red{
   color:#c00;
+}
+
+.category-title h3{
+  display: inline-block;
+}
+
+.category-title span{
 }

@@ -57,6 +57,8 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
 
+  config.action_controller.asset_host = "http://asset%d.66kjobs.com"
+
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
@@ -72,6 +74,8 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+
+  config.assets.cache_store = :dalli_store
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
@@ -80,4 +84,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    :api_key  => Setting.mailgun.api_key,
+    :api_host => Setting.mailgun.api_host
+  }
+
+  config.action_mailer.default_url_options               = {
+    :host => Setting.domain.sub("http://", "")
+  }
 end

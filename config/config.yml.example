@@ -1,0 +1,23 @@
+defaults: &defaults
+  app_secret_key: 'device secret key here'
+  app_name: "66K 工作網"
+  domain: "http://awesome-job.dev"
+  facebook_app_id: 710686532311958
+  google_analytics_key: UA-52771099-1
+  default_og_url:
+  mailgun:
+    api_key: "your mailgun here"
+    api_host: 66kjobs.tw
+    email_sender: "yourmail@company.com"   
+    newspaper_email: "" 
+development:
+  <<: *defaults
+  env_secret:
+test:
+  <<: *defaults
+
+
+production:
+  <<: *defaults
+  env_secret: "modify_here"
+  domain: "http://66kjobs.tw"

@@ -13,6 +13,17 @@ namespace :dev do
     Category.create!(:name => "行銷 / 企劃")
   end
 
+  desc "make all current_jobs confirmed"
+  task :make_all_current_jobs_confirmed => :environment do 
+    Job.find_each do |j|
+      j.email_confirmed = true
+      j.email_confirmed_at = Time.now
+      j.save
+
+      puts j.id
+    end
+  end
+
   task :fake => :environment do 
 
     Category.all.each do |c|
@@ -37,7 +48,8 @@ namespace :dev do
     job.lower_bound = 30000 
     job.higher_bound = 66000 + rand(200000)
     job.is_published = true
-
+    job.email_confirmed = true
+    job.email_confirmed_at = Time.now
 
     job.save
   end
